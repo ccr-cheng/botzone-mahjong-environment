@@ -484,7 +484,7 @@ python preprocess.py <data_path>
 python setup.py install
 ```
 
-以安装自定义包。总的来说，结果是生成了名为`MahjongBot`的本地模块，其中包含`action`方法接收一个字符串，并输出一个字符串。如要改变实现，请修改`mahjong.cpp`；如要修改模块名和方法名，请修改`mahjong_wrapper.cpp`与`setup.py`。更多细节请参见https://docs.python.org/3/extending/extending.html。
+以安装自定义包。总的来说，结果是生成了名为`MahjongBot`的本地模块，其中包含`action`方法接收一个字符串，并输出一个字符串。如要改变实现，请修改`mahjong.cpp`；如要修改模块名和方法名，请修改`mahjong_wrapper.cpp`与`setup.py`。更多细节请参见[Python官网](https://docs.python.org/3/extending/extending.html)。
 
 为了测试是否成功安装，可以运行`test_cpp_bot.py`，将随机生成一场牌局。
 
