@@ -191,11 +191,11 @@ python mahjong.zip
 
   构造函数。
 
-- `init(self, tile_wall=None, round_wind=None, round_stage=None)->Action`
+- `init(self, tile_wall=None, round_wind=None, round_stage=None) -> Action`
 
   初始化函数。**必须**在调用`step`前调用。如不带参数调用，则随机生成一轮牌局；如带参数调用，三个参数都需要指定，这些数据可以通过下节[处理人类玩家数据](##`mahjong_data`: 人类牌局数据)获得。
 
-  - `tile_wall: list[list[str]]`：四个玩家的牌墙，形状为$4\times 34$，从而确保每轮摸牌无随机性；
+  - `tile_wall: list[list[str]]`：四个玩家的牌墙，形状为4 × 34，从而确保每轮摸牌无随机性；
   - `round_wind: int`：圈风；
   - `round_stage: int`：局风，即第一个出牌玩家；
   - 返回值：初始request，一定是第一个出牌玩家抽牌。
@@ -313,35 +313,30 @@ python mahjong.zip
 
 - `BaseMahjongBot`：麻将Bot基类。
 
-  - `@staticmethod
-    def check_hu(obs) -> int`
-
-    检测当前是否和牌，如和则返回番数（包括小于8番），如没和则返回-1。
-
-  - `@staticmethod
-    def check_kong(obs) -> bool`
-
-    检测当前是否能杠上一张别人打出或摸进的牌。
-
-  - `@staticmethod
-    def check_meld_kong(obs) -> bool`
-
-    检测当前是否能补杠上一张别人打出的牌。
-
-  - `@staticmethod
-    def check_pung(obs) -> bool`
-
-    检测当前是否能碰上一张别人打出的牌。
-
-  - `@staticmethod
-    def check_chow(obs) -> List[str]`
-
-    检测当前是否能吃上一张别人打出的牌。如不能则返回空列表，否则返回**所有**合法吃牌顺子的中间牌。
-
+  - `staticmethod check_hu(obs) -> int`
+    
+检测当前是否和牌，如和则返回番数（包括小于8番），如没和则返回-1。
+    
+- `staticmethod check_kong(obs) -> bool`
+    
+  检测当前是否能杠上一张别人打出或摸进的牌。
+  
+  - `staticmethod check_meld_kong(obs) -> bool`
+  
+  检测当前是否能补杠上一张别人打出的牌。
+    
+- `staticmethod check_pung(obs) -> bool`
+    
+检测当前是否能碰上一张别人打出的牌。
+    
+  - `staticmethod check_chow(obs) -> List[str]`
+  
+  检测当前是否能吃上一张别人打出的牌。如不能则返回空列表，否则返回**所有**合法吃牌顺子的中间牌。
+  
   - `action(self, obs: dict) -> Action`
-
-    做出一个动作。需要在子类中实现。
-
+  
+  做出一个动作。需要在子类中实现。
+  
 - `RandomMahjongBot(BaseMahjongBot)`
 
   实现了一个`action`函数，能鸣牌就鸣牌，否则随机打一张单张，否则随机出牌。
@@ -369,9 +364,9 @@ ERROR_NOT_WIN
 
 `mahjong_data`文件夹下包含了数据预处理脚本`preprocess.py`与测试用的数据文件`processed_data_sample.json`。
 
-数据来自Botzone官网提供的`mjdata.zip`，详见[这里](https://www.Botzone.org.cn/static/gamecontest2020a.html)。链接：https://pan.baidu.com/s/1vXzYUsRBNpH245SQku0b3A，提取码：rm79。其中包含人类玩家对局的12140场流局，132994场自摸，及385324场点炮。
+数据来自Botzone官网提供的`mjdata.zip`，详见[这里](https://www.Botzone.org.cn/static/gamecontest2020a.html)。链接：[百度网盘](https://pan.baidu.com/s/1vXzYUsRBNpH245SQku0b3A)，提取码：rm79。其中包含人类玩家对局的12140场流局，132994场自摸，及385324场点炮。
 
-### :warning:
+### ⚠️
 
 由于每场比赛数据记录在一个txt文件中，解压极有可能会把一般电脑的文件资源管理器搞炸，因此**请不要尝试解压！！**预处理脚本会自动处理压缩包，在不解压的情况下读取数据。
 
@@ -393,7 +388,7 @@ python preprocess.py <data_path>
 
 - `first_player`: 第一位玩家，由于东风位玩家编号总为0，此参数相当于局风。
 
-- `tiles`: 四位玩家的牌墙，$4\times 34$的数组，每个元素为代表牌的字符串。注意，为了消除随机性，**玩家所有摸牌也会加入其中**。为了不影响`mahjong_env`对和牌的检查（海底捞月等），将每个人的手牌用空串补足到34张。
+- `tiles`: 四位玩家的牌墙，4 × 34的数组，每个元素为代表牌的字符串。注意，为了消除随机性，**玩家所有摸牌也会加入其中**。为了不影响`mahjong_env`对和牌的检查（海底捞月等），将每个人的手牌用空串补足到34张。
 
 - `actions`: 四位玩家每轮动作。其中每个动作为一个数组，第一个元素为动作类型：
 
