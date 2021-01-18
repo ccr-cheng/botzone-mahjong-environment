@@ -193,7 +193,7 @@ python mahjong.zip
 
 - `init(self, tile_wall=None, round_wind=None, round_stage=None) -> Action`
 
-  初始化函数。**必须**在调用`step`前调用。如不带参数调用，则随机生成一轮牌局；如带参数调用，三个参数都需要指定，这些数据可以通过下节[处理人类玩家数据](##`mahjong_data`: 人类牌局数据)获得。
+  初始化函数。**必须**在调用`step`前调用。如不带参数调用，则随机生成一轮牌局；如带参数调用，三个参数都需要指定，这些数据可以通过下节处理人类玩家数据获得。
 
   - `tile_wall: list[list[str]]`：四个玩家的牌墙，形状为4 × 34，从而确保每轮摸牌无随机性；
   - `round_wind: int`：圈风；
@@ -315,28 +315,30 @@ python mahjong.zip
 
   - `staticmethod check_hu(obs) -> int`
     
+
 检测当前是否和牌，如和则返回番数（包括小于8番），如没和则返回-1。
     
 - `staticmethod check_kong(obs) -> bool`
-    
+  
   检测当前是否能杠上一张别人打出或摸进的牌。
   
   - `staticmethod check_meld_kong(obs) -> bool`
   
   检测当前是否能补杠上一张别人打出的牌。
-    
+  
 - `staticmethod check_pung(obs) -> bool`
-    
+  
+
 检测当前是否能碰上一张别人打出的牌。
     
   - `staticmethod check_chow(obs) -> List[str]`
-  
+
   检测当前是否能吃上一张别人打出的牌。如不能则返回空列表，否则返回**所有**合法吃牌顺子的中间牌。
-  
+
   - `action(self, obs: dict) -> Action`
-  
+
   做出一个动作。需要在子类中实现。
-  
+
 - `RandomMahjongBot(BaseMahjongBot)`
 
   实现了一个`action`函数，能鸣牌就鸣牌，否则随机打一张单张，否则随机出牌。
@@ -368,7 +370,7 @@ ERROR_NOT_WIN
 
 ### ⚠️
 
-由于每场比赛数据记录在一个txt文件中，解压极有可能会把一般电脑的文件资源管理器搞炸，因此**请不要尝试解压！！**预处理脚本会自动处理压缩包，在不解压的情况下读取数据。
+由于每场比赛数据记录在一个txt文件中，解压极有可能会把一般电脑的文件资源管理器搞炸，因此**请不要尝试解压**！！预处理脚本会自动处理压缩包，在不解压的情况下读取数据。
 
 ### `preprocess.py`
 
